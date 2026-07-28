@@ -19,6 +19,19 @@ KML/KMZ → [1] AI Classification → [2] Code Extraction → [3] Naming Parser 
 | **3. Naming Parser** | Parse conventions like `H10L1S3`, `8M-C-83` | **Regex** (confined to stable CAD patterns) | Low — naming from CAD export is stable across engineers |
 | **4. Computation** | Haversine distances, roll-ups, topology tree | **Code** (math, graph traversal) | Near-zero |
 
+### Model Selection (verified Jul 2026)
+
+The classifier reads a KML folder tree (<500 tokens per KML) and maps folders to section types.
+
+| Model | In/Out per 1M tokens | Why it fits |
+|-------|---------------------|-------------|
+| **Google Gemini 3.5 Flash-Lite** | $0.30 / $2.50 | Best budget tier for structured extraction, 1M context, fastest Google tier |
+| **OpenAI GPT-5.6 Luna** | $1.00 / $6.00 (50% disc: $0.50/$3) | Strong structured output, discounted for high volume |
+| **Meta poolside Laguna S 2.1** | $0.10 / $0.20 (free variant available) | Open-weight, zero-cost eval |
+| **Meituan LongCat 2.0** | $0.30 / $1.20 | Sparse MoE, good for batch |
+
+Cost per KML parse is <$0.001 regardless — input is tiny. Pick for accuracy.
+
 ### Naming Convention Patterns (from analyzed KML)
 
 ```
