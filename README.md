@@ -57,9 +57,10 @@ System topology: OLT → Feeder Cable → Hub Box → DC Cable → FAT (on Pole)
 - Human-in-the-loop: show AI classification for user confirmation on first-run KMLs
 - Cached pattern maps: once AI classifies a folder structure, cache the mapping for fast re-parsing
 
-### Phase 3: Offline Support (if needed)
-- Local embedding model (sentence-transformers ONNX) for offline classification
-- Built from logged classification data in Phase 2
+### Phase 3: Scale & Monitor (office-only, always-online)
+- Confidence tracking across all processed KMLs
+- Build pattern cache from AI classifications to accelerate re-parsing of same-site KMLs
+- Continual improvement: flag low-confidence classifications for human review
 
 ## Site Data: Ewutuntun Cluster
 
