@@ -57,6 +57,14 @@ Status: COMPLETE
 ## KML Classification Pipeline (AI-First, Batched)
 
 ```
+Step 0 — Clean KML (pre-processing)
+  → Remove all Style, StyleMap, IconStyle, LineStyle, PolyStyle elements
+  → Remove GroundOverlay, ScreenOverlay, NetworkLink
+  → Remove gx:Tour, gx:Playlist, gx:MultiTrack
+  → Remove extended data not needed for extraction
+  → Keep only: Document, Folder, Placemark, name, Point, LineString, Polygon, coordinates, description
+  → Output: cleaned KML (~80% size reduction)
+
 Step 1 — Parse KML structure (lxml)
   → Extract all Placemarks with coordinates, names, folders
   → Group by folder/layer type (heuristic: folder name patterns)
